@@ -1,0 +1,90 @@
+table {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+}
+
+th,
+td {
+    border: 1px solid gray;
+    padding: 10px;
+}
+
+
+th.data {
+    min-width: 8rem;
+
+}
+
+.destaque {
+    text-align: center;
+    background-color: coral;
+    color: darkblue;
+    padding: 0.5em;
+}
+
+.rodape {
+    text-align: center;
+    padding: 0.2em;
+    margin-top: 10em;
+    background-color: lightgrey;
+}
+
+.menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none; 
+
+
+
+    text-align: center;
+    padding: 1rem;
+    background-color: lightgray;
+    margin-bottom: 20px;
+}
+
+h1 {
+    overflow-wrap: break-word;
+
+    font-size: 2rem;
+    text-align: center;
+}
+
+h2 {
+    font-size: 1.5em;
+}
+
+.botao-menu {
+    display: inline-block;
+
+    background-color: black;
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    margin: 5px;
+}
+
+
+#divMensagem {
+    background-color: lightyellow;
+    margin: 1em;
+}
+
+
+form{
+    text-align: center;
+}
+
+input{
+    margin-bottom: 1rem;
+}
+
+
+.btnCadastrar{
+    background-color: blue;
+    color: white;
+    border: none;
+    padding: 10px 10px;
+}

@@ -1,0 +1,18 @@
+@startuml
+
+class Administrador{
+    -id: string;
+    - nome: string;
+    - email: string;
+    - senha: string;
+    
+
+    + cadastrarAdministrafores(): void
+    + buscarAdministradores(): Administrador[]
+    + alterarAdministradorrs(id: string): void
+    + excluirAdministrador(id: string): void
+    + limparCampos(): void
+}
+
+@enduml
+

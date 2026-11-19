@@ -1,0 +1,100 @@
+import { useEffect, useState } from "react";
+import MenuAdm from "../components/MenuAdm";
+
+//import foi Alterado o camonho "p/pg"
+import { useAdm } from "../hooks/useAdm_pg";
+
+import { useNavigate } from "react-router";
+
+//import foi Alterado o camonho "p/pg"
+import useLogin from "../hooks/useLogin_pg";
+import type Administrador from "../interfaces/Administrador";
+
+
+export function TelaListaAdm() {
+    const { verificarUsuarioLogado } = useLogin()
+
+    const { buscarAdministradores, excluirAdministrador } = useAdm()
+
+    //Alterar o UseState Apagar (buscarAdministradores()) colocar <Administrador[]>([])
+    const [listaAdministradores, setListaAdministradores] = useState<Administrador[]>([]);
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        verificarUsuarioLogado()
+
+        buscarAdministradores().then((dados: Administrador[]) => {
+            setListaAdministradores(dados)
+        });
+
+    })
+
+
+
+    return (
+        <>
+            <MenuAdm />
+            <main id="conteudoPrincipal">
+                <h1 >
+                    Tela de listagem de ADM
+                </h1>
+                <table>
+                    <thead>
+
+                        <tr>
+                            <th>
+                                Nome
+                            </th>
+                            <th>
+                                E-mail
+                            </th>
+                            <th colSpan={2}>
+                                Ações
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            listaAdministradores.map(
+                                (administrador) => (
+                                    <tr key={administrador.id}>
+                                        <td>
+                                            {administrador.nome}
+                                        </td>
+                                        <td>
+                                            {administrador.email}
+                                        </td>
+                                        <td>
+                                            <button onClick={() => {
+                                                navigate("/telaCadastroAdm", {
+                                                    state: { administrador }
+                                                });
+                                            }}>
+                                                Alterar
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <button
+                                                onClick={() => {
+                                                    const confirmar = window.confirm("Deseja excluir o administrador " + administrador.nome + "?");
+                                                    if (confirmar) {
+                                                        excluirAdministrador(administrador.id);
+                                                        buscarAdministradores().then((dados: Administrador[]) => {
+            setListaAdministradores(dados)
+        });
+                                                    }
+                                                }}>
+                                                Excluir
+                                            </button>
+                                        </td>
+                                    </tr>
+                                )
+                            )
+                        }
+                    </tbody>
+                </table>
+            </main>
+        </>
+    )
+}
